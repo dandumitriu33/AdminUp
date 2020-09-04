@@ -4,14 +4,16 @@ using AdminUp.DataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdminUp.DataAccessLibrary.Migrations
 {
     [DbContext(typeof(AdminUpContext))]
-    partial class AdminUpContextModelSnapshot : ModelSnapshot
+    [Migration("20200904182131_AddedValidationViaAttributes")]
+    partial class AddedValidationViaAttributes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,7 +86,7 @@ namespace AdminUp.DataAccessLibrary.Migrations
                         .HasMaxLength(20);
 
                     b.Property<decimal>("Total")
-                        .HasColumnType("money");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
