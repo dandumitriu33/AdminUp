@@ -33,9 +33,26 @@ namespace AdminUp
             });
             services.AddIdentity<IdentityUser, IdentityRole>( options => 
                     {
+                        // section just for edu purposes, defaults are the same
                         //options.User.RequireUniqueEmail = true;
+                        //options.Password.RequiredLength = 6;
+                        //options.Password.RequiredUniqueChars = 1;
+                        //options.Password.RequireDigit = true;
+                        //options.Password.RequireNonAlphanumeric = true;
+                        //options.Password.RequireLowercase = true;
+                        //options.Password.RequireUppercase = true;
                     })
                     .AddEntityFrameworkStores<AdminUpContext>();
+            // section just for edu purposes, defaults are the same
+            //services.Configure<IdentityOptions>(options =>
+            //   {
+            //       options.Password.RequiredLength = 6;
+            //       options.Password.RequiredUniqueChars = 1;
+            //       options.Password.RequireDigit = true;
+            //       options.Password.RequireNonAlphanumeric = true;
+            //       options.Password.RequireLowercase = true;
+            //       options.Password.RequireUppercase = true;
+            //   });
             services.AddControllersWithViews();
             services.AddScoped<IRepository, SQLRepository>();
         }
