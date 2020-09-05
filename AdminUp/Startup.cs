@@ -31,7 +31,8 @@ namespace AdminUp
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
-            services.AddIdentity<IdentityUser, IdentityRole>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<AdminUpContext>();
             services.AddControllersWithViews();
             services.AddScoped<IRepository, SQLRepository>();
         }
