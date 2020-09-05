@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AdminUp.Controllers
 {
-    [Authorize]
+    // enable after testing [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

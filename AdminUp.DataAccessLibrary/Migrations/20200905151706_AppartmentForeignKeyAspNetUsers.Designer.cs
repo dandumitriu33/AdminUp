@@ -4,14 +4,16 @@ using AdminUp.DataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdminUp.DataAccessLibrary.Migrations
 {
     [DbContext(typeof(AdminUpContext))]
-    partial class AdminUpContextModelSnapshot : ModelSnapshot
+    [Migration("20200905151706_AppartmentForeignKeyAspNetUsers")]
+    partial class AppartmentForeignKeyAspNetUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

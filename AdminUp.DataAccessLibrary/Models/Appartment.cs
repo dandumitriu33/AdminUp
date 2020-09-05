@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace AdminUp.DataAccessLibrary.Models
@@ -9,7 +10,8 @@ namespace AdminUp.DataAccessLibrary.Models
         public int Id { get; set; }
         public int Number { get; set; }
         public int BuildingId { get; set; }
-        public int OwnerId { get; set; }
+        [ForeignKey("AspNetUsers")]
+        public string OwnerId { get; set; }
         public int NumberOfInhabitants { get; set; }
 
     }
