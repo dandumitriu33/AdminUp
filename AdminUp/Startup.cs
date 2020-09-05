@@ -31,7 +31,10 @@ namespace AdminUp
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>( options => 
+                    {
+                        //options.User.RequireUniqueEmail = true;
+                    })
                     .AddEntityFrameworkStores<AdminUpContext>();
             services.AddControllersWithViews();
             services.AddScoped<IRepository, SQLRepository>();

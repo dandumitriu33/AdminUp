@@ -16,6 +16,7 @@ namespace AdminUp.Models
         public string LastName { get; set; }
         [Required]
         [EmailAddress]
+        [Display(Name = "Email (Username)")]
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
