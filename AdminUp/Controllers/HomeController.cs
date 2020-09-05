@@ -8,9 +8,11 @@ using Microsoft.Extensions.Logging;
 using AdminUp.Models;
 using AdminUp.DataAccessLibrary.DataAccess;
 using AdminUp.DataAccessLibrary.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminUp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
