@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AdminUp.Models;
+using AdminUp.DataAccessLibrary.DataAccess;
 
 namespace AdminUp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly AdminUpContext _dbcontext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                              AdminUpContext dbcontext)
         {
             _logger = logger;
+            _dbcontext = dbcontext;
         }
 
         public IActionResult Index()
