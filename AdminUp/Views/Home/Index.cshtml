@@ -1,8 +1,44 @@
-﻿@{
+﻿@model IEnumerable<AdminUp.DataAccessLibrary.Models.Appartment>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr/>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Owner</th>
+                <th scope="col">No. of Inhabitants</th>
+                <th scope="col">Water</th>
+                <th scope="col">Heating</th>
+                <th scope="col">Cleaning</th>
+                <th scope="col">Debt</th>
+                <th scope="col">Total</th>
+                <th scope="col">Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appartment in Model)
+            {
+                <tr>
+                    <td>@appartment.Number</td>
+                    <td>@appartment.OwnerId</td>
+                    <td>@appartment.NumberOfInhabitants</td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
 </div>
