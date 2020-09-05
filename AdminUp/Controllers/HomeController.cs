@@ -17,7 +17,6 @@ namespace AdminUp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IRepository _repository;
-        private readonly AdminUpContext _dbcontext;
 
         public HomeController(ILogger<HomeController> logger,
                               IRepository repository)
@@ -29,8 +28,18 @@ namespace AdminUp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var allAppartments = _repository.GetAllAppartments();
-            return View(allAppartments);
+            // some information is hardcoded until mechanisms are implemented
+            MonthlyExpensesViewModel output = new MonthlyExpensesViewModel();
+            output.Building = _repository.GetBuildingById(2);
+            List<Appartment> allAppartments = _repository.GetAllAppartments().ToList();
+            output.Appartments = allAppartments;
+            List<Bill> allBills = _repository.GetAllBillsByBuildingId(2);
+            output.Bills = allBills;
+            foreach (var appt in allAppartments)
+            {
+                output.TotalInhabitants += appt.NumberOfInhabitants;
+            }
+            return View(output);
         }
 
         public IActionResult Privacy()

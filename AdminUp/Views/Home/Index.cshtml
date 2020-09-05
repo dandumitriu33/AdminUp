@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdminUp.DataAccessLibrary.Models.Appartment>
+﻿@model AdminUp.Models.MonthlyExpensesViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -15,26 +15,28 @@
                 <th scope="col">Number</th>
                 <th scope="col">Owner</th>
                 <th scope="col" title="Number of residents in the appartment.">Pers</th>
-                <th scope="col" title="Based on metered consumption.">Water</th>
-                <th scope="col" title="Based on metered consumption.">Heating</th>
-                <th scope="col" title="Bill total / building number of inhabitants">Cleaning</th>
+                <th scope="col" title="Building Total / Number of Building Residents * Appartment Residents.">@Model.Bills[0].IssuerName</th>
+                <th scope="col" title="Building Total / Number of Building Residents * Appartment Residents.">@Model.Bills[1].IssuerName</th>
+                <th scope="col" title="Building Total / Number of Building Residents * Appartment Residents.">@Model.Bills[2].IssuerName</th>
                 <th scope="col" title="Previous unpaid monthly appartment bills.">Debt</th>
                 <th scope="col" title="Total amount to pay for the current month.">Total</th>
                 <th scope="col">Number</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var appartment in Model)
+            @foreach (var appartment in Model.Appartments)
             {
                 <tr>
                     <td>@appartment.Number</td>
                     <td>@appartment.OwnerId</td>
                     <td>@appartment.NumberOfInhabitants</td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> - </td>
+                    <td>@(Math.Round(Model.Bills[0].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
+                    <td>@(Math.Round(Model.Bills[1].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
+                    <td>@(Math.Round(Model.Bills[2].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
+                    <td> 0.00 </td>
+                    <td>@(Math.Round(Model.Bills[0].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants
+                                    + Model.Bills[1].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants
+                                    + Model.Bills[2].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2)) </td>
                     <td>@appartment.Number</td>
                 </tr>
             }
