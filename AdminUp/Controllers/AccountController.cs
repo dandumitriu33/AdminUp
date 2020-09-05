@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdminUp.DataAccessLibrary.Models;
 using AdminUp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,15 @@ namespace AdminUp.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IRepository _repository;
 
         public AccountController(UserManager<IdentityUser> userManager,
-                                 SignInManager<IdentityUser> signInManager)
+                                 SignInManager<IdentityUser> signInManager,
+                                 IRepository repository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _repository = repository;
         }
 
         [HttpPost]
@@ -44,6 +48,12 @@ namespace AdminUp.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    var newUser = await _userManager.FindByNameAsync(model.Email);
+                    string newUserId = newUser.Id;
+                    AppartmentOwner temp = new AppartmentOwner { Id = newUserId, FirstName = model.FirstName, LastName = model.LastName, Email = model.Email };
+                    _repository.AddAppartmentOwner(temp);
+
                     return RedirectToAction("index", "home");
                 }
 

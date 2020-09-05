@@ -11,7 +11,7 @@ namespace AdminUp.DataAccessLibrary.DataAccess
     {
         public AdminUpContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Owner> Owners { get; set; }
+        public DbSet<AppartmentOwner> AppartmentOwners { get; set; }
         public DbSet<Appartment> Appartments { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Bill> Bills { get; set; }

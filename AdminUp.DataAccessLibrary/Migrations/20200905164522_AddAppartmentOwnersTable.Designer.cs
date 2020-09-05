@@ -4,14 +4,16 @@ using AdminUp.DataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdminUp.DataAccessLibrary.Migrations
 {
     [DbContext(typeof(AdminUpContext))]
-    partial class AdminUpContextModelSnapshot : ModelSnapshot
+    [Migration("20200905164522_AddAppartmentOwnersTable")]
+    partial class AddAppartmentOwnersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace AdminUp.DataAccessLibrary.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppartmentOwnerId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("BuildingId")
                         .HasColumnType("int");
 
@@ -59,6 +58,9 @@ namespace AdminUp.DataAccessLibrary.Migrations
 
                     b.Property<int>("NumberOfInhabitants")
                         .HasColumnType("int");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Owner]
+(
+	[Id] NVARCHAR(100) NOT NULL,
+	[FirstName] NVARCHAR(150) NOT NULL,
+	[LastName] NVARCHAR(150) NOT NULL,
+	[Email] NVARCHAR(150) NOT NULL
+)

@@ -6,9 +6,11 @@ using System.Text;
 
 namespace AdminUp.DataAccessLibrary.Models
 {
-    public class Owner
+    public class AppartmentOwner
     {
-        public int Id { get; set; }
+        [ForeignKey("AspNetUsers")]
+        [Column(TypeName = ("nvarchar(100)"))]
+        public string Id { get; set; }
         [MaxLength(150)]
         public string FirstName { get; set; }
         [MaxLength(150)]

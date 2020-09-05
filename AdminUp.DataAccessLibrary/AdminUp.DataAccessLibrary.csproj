@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200905163623_AddOwnerIdForeignKeyToAspNetUsersId.cs" />
+    <Compile Remove="Migrations\20200905163623_AddOwnerIdForeignKeyToAspNetUsersId.Designer.cs" />
+    <Compile Remove="Migrations\20200905163951_AddOwnerUserId.cs" />
+    <Compile Remove="Migrations\20200905163951_AddOwnerUserId.Designer.cs" />
+    <Compile Remove="Migrations\20200905164214_RemoveOwnerTable.cs" />
+    <Compile Remove="Migrations\20200905164214_RemoveOwnerTable.Designer.cs" />
+    <Compile Remove="Migrations\20200905164417_AddAppartmentOwnerTable.cs" />
+    <Compile Remove="Migrations\20200905164417_AddAppartmentOwnerTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
   </ItemGroup>

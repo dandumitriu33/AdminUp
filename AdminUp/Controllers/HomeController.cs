@@ -35,7 +35,24 @@ namespace AdminUp.Controllers
             output.Year = 2020;
             output.Building = _repository.GetBuildingById(2);
             List<Appartment> allAppartments = _repository.GetAllAppartments().ToList();
-            output.Appartments = allAppartments;
+            List<AppartmentViewModel> allAppartmentsIncludingOwnerNames = new List<AppartmentViewModel>();
+            foreach (var appt in allAppartments)
+            {
+                string firstName = _repository.GetAppartmentOwnerFirstNameById(appt.AppartmentOwnerId);
+                string lastName = _repository.GetAppartmentOwnerLastNameById(appt.AppartmentOwnerId);
+                AppartmentViewModel tempAppt = new AppartmentViewModel
+                {
+                    Id = appt.Id,
+                    AppartmentOwnerId = appt.AppartmentOwnerId,
+                    BuildingId = appt.BuildingId,
+                    Number = appt.Number,
+                    NumberOfInhabitants = appt.NumberOfInhabitants,
+                    AppartmentOwnerFirstName = firstName,
+                    AppartmentOwnerLastName = lastName
+                };
+                allAppartmentsIncludingOwnerNames.Add(tempAppt);
+            }
+            output.Appartments = allAppartmentsIncludingOwnerNames;
             List<Bill> allBills = _repository.GetAllBillsByBuildingId(2);
             output.Bills = allBills;
             foreach (var appt in allAppartments)

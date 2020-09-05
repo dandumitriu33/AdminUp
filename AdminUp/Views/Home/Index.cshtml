@@ -29,7 +29,7 @@
             {
                 <tr>
                     <td>@appartment.Number</td>
-                    <td>@appartment.OwnerId</td>
+                    <td>@appartment.AppartmentOwnerFirstName @appartment.AppartmentOwnerLastName</td>
                     <td>@appartment.NumberOfInhabitants</td>
                     <td>@(Math.Round(Model.Bills[0].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
                     <td>@(Math.Round(Model.Bills[1].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>

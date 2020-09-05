@@ -7,5 +7,8 @@ namespace AdminUp.DataAccessLibrary.Models
         IEnumerable<Appartment> GetAllAppartments();
         Building GetBuildingById(int buildingId);
         List<Bill> GetAllBillsByBuildingId(int buildingId);
+        void AddAppartmentOwner(AppartmentOwner appartmentOwner);
+        string GetAppartmentOwnerFirstNameById(string appartmentOwnerId);
+        string GetAppartmentOwnerLastNameById(string appartmentOwnerId);
     }
 }

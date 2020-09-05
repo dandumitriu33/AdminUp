@@ -4,14 +4,16 @@ using AdminUp.DataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdminUp.DataAccessLibrary.Migrations
 {
     [DbContext(typeof(AdminUpContext))]
-    partial class AdminUpContextModelSnapshot : ModelSnapshot
+    [Migration("20200905162355_AddAppartmentOwner")]
+    partial class AddAppartmentOwner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,9 +50,6 @@ namespace AdminUp.DataAccessLibrary.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppartmentOwnerId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("BuildingId")
                         .HasColumnType("int");
 
@@ -60,31 +59,12 @@ namespace AdminUp.DataAccessLibrary.Migrations
                     b.Property<int>("NumberOfInhabitants")
                         .HasColumnType("int");
 
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Appartments");
-                });
-
-            modelBuilder.Entity("AdminUp.DataAccessLibrary.Models.AppartmentOwner", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(150)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AppartmentOwners");
                 });
 
             modelBuilder.Entity("AdminUp.DataAccessLibrary.Models.Bill", b =>
@@ -134,6 +114,30 @@ namespace AdminUp.DataAccessLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Buildings");
+                });
+
+            modelBuilder.Entity("AdminUp.DataAccessLibrary.Models.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Owners");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
