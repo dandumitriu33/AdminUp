@@ -29,7 +29,10 @@ namespace AdminUp.Controllers
         public IActionResult Index()
         {
             // some information is hardcoded until mechanisms are implemented
+
             MonthlyExpensesViewModel output = new MonthlyExpensesViewModel();
+            output.Month = "AUGUST";
+            output.Year = 2020;
             output.Building = _repository.GetBuildingById(2);
             List<Appartment> allAppartments = _repository.GetAllAppartments().ToList();
             output.Appartments = allAppartments;

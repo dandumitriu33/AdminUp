@@ -9,6 +9,7 @@ namespace AdminUp.Models
     public class MonthlyExpensesViewModel
     {
         public string Month { get; set; }
+        public int Year { get; set; }
         public Building Building { get; set; }
         public List<Appartment> Appartments { get; set; }
         public List<Bill> Bills { get; set; }
