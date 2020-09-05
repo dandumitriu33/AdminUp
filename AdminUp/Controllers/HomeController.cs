@@ -7,24 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AdminUp.Models;
 using AdminUp.DataAccessLibrary.DataAccess;
+using AdminUp.DataAccessLibrary.Models;
 
 namespace AdminUp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepository _repository;
         private readonly AdminUpContext _dbcontext;
 
         public HomeController(ILogger<HomeController> logger,
-                              AdminUpContext dbcontext)
+                              IRepository repository)
         {
             _logger = logger;
-            _dbcontext = dbcontext;
+            _repository = repository;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var allAppartments = _repository.GetAllAppartments();
+            return View(allAppartments);
         }
 
         public IActionResult Privacy()
