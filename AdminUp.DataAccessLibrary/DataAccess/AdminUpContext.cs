@@ -1,4 +1,5 @@
 ﻿using AdminUp.DataAccessLibrary.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace AdminUp.DataAccessLibrary.DataAccess
 {
-    public class AdminUpContext : DbContext
+    public class AdminUpContext : IdentityDbContext // it chain implements DbContext
     {
         public AdminUpContext(DbContextOptions options) : base(options) { }
 
