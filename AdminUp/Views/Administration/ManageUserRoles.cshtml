@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form method="post">
+        <form method="get">
 
             <div class="form-group">
                 <label>Enter user email</label>
@@ -33,15 +33,53 @@
         }
         <hr />
         <div>
-            <button class="btn btn-primary">Make this user a SuperAdmin</button>
-            <button class="btn btn-primary">Make this user a BuildingAdmin</button>
-            <button class="btn btn-primary">Make this user an AppartmentOwner</button>
+            <table>
+                <tr>
+                    <td>
+                        <form method="post" asp-action="MakeSuperAdmin" asp-controller="Administration">
+                            <input type="hidden" name="Email" value="@Model.First().User.Email">
+                            <button class="btn btn-primary">Make this user a SuperAdmin</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="MakeBuildingAdmin" asp-controller="Administration">
+                            <input type="hidden" name="Email" value="@Model.First().User.Email">
+                            <button class="btn btn-primary">Make this user a BuildingAdmin</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="MakeAppartmentOwner" asp-controller="Administration">
+                            <input type="hidden" name="Email" value="@Model.First().User.Email">
+                            <button class="btn btn-primary">Make this user an AppartmentOwner</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </div>
         <hr/>
         <div>
-            <button class="btn btn-danger">Remove SuperAdmin from this user</button>
-            <button class="btn btn-danger">Remove BuildingAdmin from this user</button>
-            <button class="btn btn-danger">Remove AppartmentOwner from this user</button>
+            <table>
+                <tr>
+                    <td>
+                        <form method="post" asp-action="RemoveSuperAdmin" asp-controller="Administration">
+                            <input type="hidden" name="Email" value="@Model.First().User.Email">
+                            <button class="btn btn-danger">Remove SuperAdmin from this user</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="RemoveBuildingAdmin" asp-controller="Administration">
+                            <input type="hidden" name="Email" value="@Model.First().User.Email">
+                            <button class="btn btn-danger">Remove BuildingAdmin from this user</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="RemoveAppartmentOwner" asp-controller="Administration">
+                            <input type="hidden" name="Email" value="@Model.First().User.Email">
+                            <button class="btn btn-danger">Remove AppartmentOwner from this user</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 }
