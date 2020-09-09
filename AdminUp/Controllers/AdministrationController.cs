@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AdminUp.Controllers
 {
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
 
     public class AdministrationController : Controller
     {
@@ -39,7 +39,7 @@ namespace AdminUp.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("listroles", "administration");
                 }
 
                 foreach (IdentityError error in result.Errors)
@@ -50,5 +50,14 @@ namespace AdminUp.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult ListRoles()
+        {
+            var roles = _roleManager.Roles;
+            return View(roles);
+        }
+
+
     }
 }
