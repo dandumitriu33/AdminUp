@@ -14,10 +14,13 @@ namespace AdminUp.Controllers
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public AdministrationController(RoleManager<IdentityRole> roleManager)
+        public AdministrationController(RoleManager<IdentityRole> roleManager,
+                                        UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -58,6 +61,48 @@ namespace AdminUp.Controllers
             return View(roles);
         }
 
+        [HttpGet]
+        public IActionResult ManageUserRoles()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ManageUserRoles(string email)
+        {
+            List<UserRoleModel> result = new List<UserRoleModel>();
+            var user = await _userManager.FindByEmailAsync(email);
+            var roles = _roleManager.Roles;
+
+            result.Add(new UserRoleModel()
+                {
+                User = user,
+                RoleId = "",
+                RoleName = ""
+            });
+            
+            if (await _userManager.IsInRoleAsync(user, "BuildingAdmin"))
+            {
+                result.Add(new UserRoleModel()
+                {
+                    User = user,
+                    RoleId = "",
+                    RoleName = "BuildingAdmin"
+                });
+            }
+            if (await _userManager.IsInRoleAsync(user, "AppartmentOwner"))
+            {
+                result.Add(new UserRoleModel()
+                {
+                    User = user,
+                    RoleId = "",
+                    RoleName = "AppartmentOwner"
+                });
+            }
+
+
+            return View(result);
+        }
 
     }
 }
