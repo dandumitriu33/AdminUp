@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "All bills";
+    string buildingId = "2";
 }
 
 <div class="text-center">
@@ -21,21 +22,26 @@
             @foreach (var bill in Model)
             {
                 <tr>
-                    <td>@bill.IssuerName.</td>
+                    <td>@bill.IssuerName</td>
                     <td>@bill.Month</td>
                     <td>@Math.Round(bill.Total, 2)</td>
                     <td>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
+                        <form method="put" asp-action="editbill" asp-controller="building">
+                            <input type="hidden" name="buildingId" value="@buildingId">
+                            <input type="hidden" name="billId" value="@bill.Id.ToString()">
+                            <button class="btn btn-warning">Edit</button>
+                        </form>
+                        <form method="post" asp-action="DeleteBill" asp-controller="Building">
+                            <input type="hidden" name="billId" value="@bill.Id">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
     <hr/>
-    @{ 
-        string buildingId = "2";
-    }
+    
 <form method="post"  asp-controller="Building" asp-action="AddBill" asp-action-buildingId="@buildingId">
 
     @*<p>Hardcoded building id 2 for now</p>*@

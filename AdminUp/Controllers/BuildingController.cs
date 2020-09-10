@@ -81,6 +81,51 @@ namespace AdminUp.Controllers
         }
 
         [HttpGet]
+        public IActionResult EditBill(int billId)
+        {
+            //int billId = int.Parse(Request.Form["billId"]);
+
+            Bill billFromDb = _repository.GetBillById(billId);
+
+            BillModel billToDisplay = new BillModel
+            {
+                Id = billFromDb.Id,
+                BuildingId = billFromDb.BuildingId,
+                IssuerName = billFromDb.IssuerName,
+                Total = billFromDb.Total,
+                Month = billFromDb.Month
+            };
+            return View(billToDisplay);
+        }
+
+        [HttpPost]
+        public IActionResult EditBillPost(int buildingId)
+        {
+            buildingId = Int32.Parse(Request.Form["buildingId"]);
+
+
+            int newId = Int32.Parse(Request.Form["billId"]);
+            string newMonth = Request.Form["month"];
+            string newIssuerName = Request.Form["issuerName"];
+            int newTotal = Convert.ToInt32(double.Parse(Request.Form["total"]));
+            int newBuildingId = Int32.Parse(Request.Form["buildingId"]);
+            
+
+            Bill billToUpdateOnDb = new Bill
+            {
+                Id = newId,
+                Month = newMonth,
+                IssuerName = newIssuerName,
+                Total = newTotal,
+                BuildingId = newBuildingId
+            };
+
+            _repository.UpdateBill(billToUpdateOnDb);
+
+            return RedirectToAction("Bills", new { buildingId });
+        }
+
+        [HttpGet]
         [Route("building/index/{buildingId}/announcements")]
         public IActionResult Announcements(int buildingId)
         {

@@ -50,6 +50,27 @@ namespace AdminUp.DataAccessLibrary.Models
             _context.SaveChanges();
         }
 
+        public Bill GetBillById(int billId)
+        {
+            Bill billFromDb = _context.Bills.Where(bill => bill.Id == billId).FirstOrDefault();
+            return billFromDb;
+        }
+
+        public void UpdateBill(Bill billFromForm)
+        {
+            var result = _context.Bills.Where(b => b.Id == billFromForm.Id).FirstOrDefault();
+
+            if (result != null)
+            {
+                result.IssuerName = billFromForm.IssuerName;
+                result.Month = billFromForm.Month;
+                result.BuildingId = billFromForm.BuildingId;
+                result.Total = billFromForm.Total;
+                _context.SaveChanges();
+            }
+            
+        }
+
         public void AddAppartmentOwner(AppartmentOwner appartmentOwner)
         {
             _context.AppartmentOwners.Add(appartmentOwner);

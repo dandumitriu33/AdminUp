@@ -1,0 +1,48 @@
+﻿@model BillModel
+
+@{
+    ViewBag.Title = "Edit Bill";
+    string buildingId = "2";
+}
+
+<div class="text-center">
+    <h2>Edit Bill</h2>
+
+    <form method="post" asp-controller="Building" asp-action="EditBillPost">
+        <input type="hidden" name="buildingId" value="@buildingId">
+        <input type="hidden" name="billId" value="@Model.Id">
+        @*<p>Hardcoded building id 2 for now</p>*@
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Bill Issuer Name</label>
+                    </td>
+                    <td>
+                        <input type="text" name="issuerName" class="form-control" value="@Model.IssuerName" />
+                    </td>
+                    <td>
+                        <label>Bill Month</label>
+                    </td>
+                    <td>
+                        <input type="text" name="month" class="form-control" value="@Model.Month" />
+                    </td>
+                    <td>
+                        <label>Bill Total</label>
+                    </td>
+                    <td>
+                        <input type="text" name="total" class="form-control" value="@Math.Round(Model.Total, 2)" />
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Edit Bill</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+
+    <hr />
+
+</div>

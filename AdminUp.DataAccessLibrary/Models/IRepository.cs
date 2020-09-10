@@ -10,6 +10,8 @@ namespace AdminUp.DataAccessLibrary.Models
         Building GetBuildingById(int buildingId);
         List<Bill> GetAllBillsByBuildingId(int buildingId);
         void AddBill(Bill bill);
+        Bill GetBillById(int billId);
+        void UpdateBill(Bill bill);
         void AddAppartmentOwner(AppartmentOwner appartmentOwner);
         string GetAppartmentOwnerFirstNameById(string appartmentOwnerId);
         string GetAppartmentOwnerLastNameById(string appartmentOwnerId);
