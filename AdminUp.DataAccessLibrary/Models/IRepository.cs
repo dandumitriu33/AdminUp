@@ -12,6 +12,7 @@ namespace AdminUp.DataAccessLibrary.Models
         void AddBill(Bill bill);
         Bill GetBillById(int billId);
         void UpdateBill(Bill bill);
+        void DeleteBillById(int billId);
         void AddAppartmentOwner(AppartmentOwner appartmentOwner);
         string GetAppartmentOwnerFirstNameById(string appartmentOwnerId);
         string GetAppartmentOwnerLastNameById(string appartmentOwnerId);

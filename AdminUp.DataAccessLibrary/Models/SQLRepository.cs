@@ -68,7 +68,13 @@ namespace AdminUp.DataAccessLibrary.Models
                 result.Total = billFromForm.Total;
                 _context.SaveChanges();
             }
-            
+        }
+
+        public void DeleteBillById(int billId)
+        {
+            var result = _context.Bills.Where(b => b.Id == billId).FirstOrDefault();
+            _context.Bills.Remove(result);
+            _context.SaveChanges();
         }
 
         public void AddAppartmentOwner(AppartmentOwner appartmentOwner)

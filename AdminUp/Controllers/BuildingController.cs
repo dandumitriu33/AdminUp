@@ -110,7 +110,6 @@ namespace AdminUp.Controllers
             int newTotal = Convert.ToInt32(double.Parse(Request.Form["total"]));
             int newBuildingId = Int32.Parse(Request.Form["buildingId"]);
             
-
             Bill billToUpdateOnDb = new Bill
             {
                 Id = newId,
@@ -123,6 +122,16 @@ namespace AdminUp.Controllers
             _repository.UpdateBill(billToUpdateOnDb);
 
             return RedirectToAction("Bills", new { buildingId });
+        }
+
+        [HttpPost]
+        public IActionResult DeleteBill(int buildingId)
+        {
+            int billId = int.Parse(Request.Form["billId"]);
+
+            _repository.DeleteBillById(billId);
+
+            return RedirectToAction("bills", new { buildingId });
         }
 
         [HttpGet]
