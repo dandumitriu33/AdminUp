@@ -44,6 +44,12 @@ namespace AdminUp.DataAccessLibrary.Models
             return _context.Bills.Where(bill => bill.BuildingId == buildingId).ToList();
         }
 
+        public void AddBill(Bill bill)
+        {
+            _context.Bills.Add(bill);
+            _context.SaveChanges();
+        }
+
         public void AddAppartmentOwner(AppartmentOwner appartmentOwner)
         {
             _context.AppartmentOwners.Add(appartmentOwner);

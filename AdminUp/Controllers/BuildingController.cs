@@ -58,6 +58,28 @@ namespace AdminUp.Controllers
             return View(allBillsModels);
         }
 
+        [HttpPost]
+        public IActionResult AddBill(int buildingId)
+        {
+            // building id 2 hardcoded until full implementation
+            buildingId = 2;
+            string billIssuerName = Request.Form["issuerName"];
+            string month = Request.Form["month"];
+            string total = Request.Form["total"];
+
+            Bill newBill = new Bill
+            {
+                IssuerName = billIssuerName,
+                Month = month,
+                BuildingId = buildingId,
+                Total = Int32.Parse(total)
+            };
+
+            _repository.AddBill(newBill);
+
+            return RedirectToAction("Bills", new { buildingId });
+        }
+
         [HttpGet]
         [Route("building/index/{buildingId}/announcements")]
         public IActionResult Announcements(int buildingId)

@@ -8,9 +8,64 @@
     <h2>All bills</h2>
     <hr />
 
-    @foreach (var bill in Model)
-    {
-        <p>@bill.IssuerName - @bill.Month - Total: @bill.Total RON</p>
-        <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Issuer Name</th>
+                <th scope="col">Month</th>
+                <th scope="col">Total</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bill in Model)
+            {
+                <tr>
+                    <td>@bill.IssuerName.</td>
+                    <td>@bill.Month</td>
+                    <td>@Math.Round(bill.Total, 2)</td>
+                    <td>
+                        <button class="btn btn-warning">Edit</button>
+                        <button class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr/>
+    @{ 
+        string buildingId = "2";
     }
+<form method="post"  asp-controller="Building" asp-action="AddBill" asp-action-buildingId="@buildingId">
+
+    @*<p>Hardcoded building id 2 for now</p>*@
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label>Bill Issuer Name</label>
+                </td>
+                <td>
+                    <input type="text" name="issuerName" class="form-control" />
+                </td>
+                <td>
+                    <label>Bill Month</label>
+                </td>
+                <td>
+                    <input type="text" name="month" class="form-control" />
+                </td>
+                <td>
+                    <label>Bill Total</label>
+                </td>
+                <td>
+                    <input type="text" name="total" class="form-control" />
+                </td>
+                <td>
+                    <button class="btn btn-primary">Add Bill</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</form>
 </div>
