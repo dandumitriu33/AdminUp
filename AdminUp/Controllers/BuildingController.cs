@@ -91,5 +91,28 @@ namespace AdminUp.Controllers
 
             return RedirectToAction("Announcements", new { buildingId });
         }
+
+        [HttpGet]
+        [Route("building/index/{buildingId}/appartments")]
+        public IActionResult Appartments(int buildingId)
+        {
+            // hardcoded as 2 for now
+            buildingId = 2; // to delete when proper multiple buildings implementation is up
+            var allAppartments = _repository.GetAllAppartmentsByBuildingId(buildingId);
+            List<AppartmentModel> allAppartmentsModels = new List<AppartmentModel>();
+
+            foreach (var appartment in allAppartments)
+            {
+                allAppartmentsModels.Add(new AppartmentModel
+                {
+                    Id = appartment.Id,
+                    Number = appartment.Number,
+                    BuildingId = appartment.BuildingId,
+                    NumberOfInhabitants = appartment.NumberOfInhabitants,
+                    AppartmentOwnerId = appartment.AppartmentOwnerId
+                });
+            }
+            return View(allAppartmentsModels);
+        }
     }
 }

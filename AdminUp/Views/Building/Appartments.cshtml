@@ -1,0 +1,31 @@
+﻿@model IEnumerable<AppartmentModel>
+
+@{
+    ViewBag.Title = "All appartments";
+}
+
+<div class="text-center">
+    <h2>All appartments</h2>
+    <hr />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Owner</th>
+                <th scope="col">No. of Inhabitants</th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appartment in Model)
+            {
+                <tr>
+                    <td>@appartment.Number</td>
+                    <td>@appartment.AppartmentOwnerId</td>
+                    <td>@appartment.NumberOfInhabitants</td>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

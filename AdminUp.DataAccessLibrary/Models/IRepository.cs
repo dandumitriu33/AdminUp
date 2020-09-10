@@ -6,6 +6,7 @@ namespace AdminUp.DataAccessLibrary.Models
     {
         IEnumerable<Building> GetAllBuildings();
         IEnumerable<Appartment> GetAllAppartments();
+        IEnumerable<Appartment> GetAllAppartmentsByBuildingId(int buildingId);
         Building GetBuildingById(int buildingId);
         List<Bill> GetAllBillsByBuildingId(int buildingId);
         void AddAppartmentOwner(AppartmentOwner appartmentOwner);
