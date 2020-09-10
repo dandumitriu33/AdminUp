@@ -4,6 +4,7 @@ namespace AdminUp.DataAccessLibrary.Models
 {
     public interface IRepository
     {
+        IEnumerable<Building> GetAllBuildings();
         IEnumerable<Appartment> GetAllAppartments();
         Building GetBuildingById(int buildingId);
         List<Bill> GetAllBillsByBuildingId(int buildingId);

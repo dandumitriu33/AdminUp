@@ -1,0 +1,20 @@
+﻿@model IEnumerable<BuildingModel>
+
+@{ 
+    ViewBag.Title = "All buildings";
+}
+
+<div class="text-center">
+    <h2>All buildings</h2>
+    <hr/>
+
+    @foreach (var building in Model)
+    {
+        <p>@building.Name - @building.Address</p>
+        <hr/>
+    }
+
+    <button class="btn btn-primary">Add Building</button>
+
+</div>
+

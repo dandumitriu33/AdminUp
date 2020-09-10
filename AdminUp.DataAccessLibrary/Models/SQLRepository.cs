@@ -16,6 +16,11 @@ namespace AdminUp.DataAccessLibrary.Models
             _context = context;
         }
 
+        public IEnumerable<Building> GetAllBuildings()
+        {
+            return _context.Buildings;
+        }
+
         public IEnumerable<Appartment> GetAllAppartments()
         {
             return _context.Appartments;

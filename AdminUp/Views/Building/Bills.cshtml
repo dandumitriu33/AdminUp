@@ -1,0 +1,16 @@
+﻿@model IEnumerable<BillModel>
+
+@{
+    ViewBag.Title = "All bills";
+}
+
+<div class="text-center">
+    <h2>All bills</h2>
+    <hr />
+
+    @foreach (var bill in Model)
+    {
+        <p>@bill.IssuerName - @bill.Month - Total: @bill.Total RON</p>
+        <hr />
+    }
+</div>
