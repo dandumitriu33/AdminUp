@@ -15,32 +15,50 @@
             <tr>
                 <th scope="col">Number</th>
                 <th scope="col">Owner</th>
-                <th scope="col" title="Number of residents in the appartment.">Pers</th>
-                <th scope="col" title="Building Total / Number of Building Residents * Appartment Residents.">@Model.Bills[0].IssuerName</th>
-                <th scope="col" title="Building Total / Number of Building Residents * Appartment Residents.">@Model.Bills[1].IssuerName</th>
-                <th scope="col" title="Building Total / Number of Building Residents * Appartment Residents.">@Model.Bills[2].IssuerName</th>
-                <th scope="col" title="Previous unpaid monthly appartment bills.">Debt</th>
-                <th scope="col" title="Total amount to pay for the current month.">Total</th>
+                <th scope="col">No. of Inhabitants</th>
+                @{
+                    decimal totalBuildingExpenses = 0;
+                }
+                @foreach (var bill in Model.Bills)
+                {
+                    totalBuildingExpenses = totalBuildingExpenses + bill.Total;
+                    <th scope="col" title="Bill Total / Total Building Inhabitants * Appartment No. of Inhabitants">@bill.IssuerName</th>
+                }
                 <th scope="col">Number</th>
             </tr>
         </thead>
         <tbody>
+            @{ int totalInhabitants = 0; }
             @foreach (var appartment in Model.Appartments)
             {
+                decimal totalAppartmentExpenses = 0;
+                totalInhabitants += appartment.NumberOfInhabitants;
                 <tr>
                     <td>@appartment.Number</td>
                     <td>@appartment.AppartmentOwnerFirstName @appartment.AppartmentOwnerLastName</td>
                     <td>@appartment.NumberOfInhabitants</td>
-                    <td>@(Math.Round(Model.Bills[0].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
-                    <td>@(Math.Round(Model.Bills[1].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
-                    <td>@(Math.Round(Model.Bills[2].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2))</td>
-                    <td> 0.00 </td>
-                    <td>@(Math.Round(Model.Bills[0].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants
-                                    + Model.Bills[1].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants
-                                    + Model.Bills[2].Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2)) </td>
+                    @foreach (var bill in Model.Bills)
+                    {
+                        <td>
+                            @Math.Round(bill.Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2)    
+                        </td>
+                        totalAppartmentExpenses = totalAppartmentExpenses + Math.Round(bill.Total / Model.TotalInhabitants * appartment.NumberOfInhabitants, 2);
+                    }
+                    <td>@totalAppartmentExpenses</td>
                     <td>@appartment.Number</td>
                 </tr>
             }
+            <tr>
+                <td> - </td>
+                <td> - </td>
+                <td>@totalInhabitants</td>
+                @foreach (var bill in Model.Bills)
+                {
+                    <td>@Math.Round(bill.Total, 2)</td>
+                }
+                <td>@Math.Round(totalBuildingExpenses, 2)</td>
+                <td> - </td>
+            </tr>
         </tbody>
     </table>
     
