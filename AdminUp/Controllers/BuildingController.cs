@@ -57,5 +57,39 @@ namespace AdminUp.Controllers
             }
             return View(allBillsModels);
         }
+
+        [HttpGet]
+        [Route("building/index/{buildingId}/announcements")]
+        public IActionResult Announcements(int buildingId)
+        {
+            // hardcoded as 2 for now
+            buildingId = 2; // to delete when proper multiple buildings implementation is up
+            var allAnnouncements = _repository.GetAllAnnouncementsByBuildingId(buildingId);
+            List<AnnouncementModel> allAnnouncementsModels = new List<AnnouncementModel>();
+
+            foreach (var announcement in allAnnouncements)
+            {
+                allAnnouncementsModels.Add(new AnnouncementModel
+                {
+                    Id = announcement.Id,
+                    BuilidingId = announcement.BuilidingId,
+                    Message = announcement.Message,
+                    DateAdded = announcement.DateAdded
+                });
+            }
+            return View(allAnnouncementsModels);
+        }
+
+        [HttpPost]
+        public IActionResult AddAnnouncement(int buildingId)
+        {
+            // hardocded building id 2 to be removed when full implementation is up
+            buildingId = 2;
+
+            string announcementMessage = Request.Form["announcementMessage"];
+            _repository.AddAnnouncement(buildingId, announcementMessage);
+
+            return RedirectToAction("Announcements", new { buildingId });
+        }
     }
 }

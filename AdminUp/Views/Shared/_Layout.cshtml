@@ -37,9 +37,10 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" asp-controller="Building" asp-action="Index">My Buildings</a>
+                                @*<p>HARDCODED VALUE @ FOR NOW</p>*@
+                                <a class="dropdown-item" href="building/index/2/announcements" >Announcements</a>
                                 <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">Bills</a>
                                 <a class="dropdown-item" asp-controller="Administration" asp-action="CreateRole">Appartment Owners</a>
-                                <a class="dropdown-item" asp-controller="Administration" asp-action="ManageUserRoles">Announcements</a>
                             </div>
                         </li>
                     </ul>

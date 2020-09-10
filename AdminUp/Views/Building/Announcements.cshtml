@@ -1,0 +1,23 @@
+﻿@model IEnumerable<AnnouncementModel>
+
+@{
+    ViewBag.Title = "All announcements";
+}
+
+<div class="text-center">
+    <h2>All announcements</h2>
+    <hr />
+
+    @foreach (var announcement in Model)
+    {
+        <p>@announcement.DateAdded - @announcement.Message</p>
+        <hr />
+    }
+<form method="post" asp-action="AddAnnouncement" asp-controller="Building">
+    @*<p>Hardcoded building id 2 for now</p>*@
+    <label>Announcement message</label>
+    <input type="text" name="announcementMessage" class="form-control" />
+    <input type="hidden" name="buildingId" value="2"><span><button class="btn btn-primary">Add Announcement</button></span>
+    
+</form>
+</div>

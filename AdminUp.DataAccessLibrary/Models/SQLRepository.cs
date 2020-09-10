@@ -62,5 +62,21 @@ namespace AdminUp.DataAccessLibrary.Models
             }
             return owner.LastName;
         }
+
+        public IEnumerable<Announcement> GetAllAnnouncementsByBuildingId(int buildingId)
+        {
+            return _context.Announcements.Where(a => a.BuilidingId == buildingId).OrderByDescending(a => a.DateAdded).ToList();
+        }
+
+        public void AddAnnouncement(int buildingId, string announcementMessage)
+        {
+            Announcement newAnnouncement = new Announcement
+            {
+                BuilidingId = buildingId,
+                Message = announcementMessage
+            };
+            _context.Announcements.Add(newAnnouncement);
+            _context.SaveChanges();
+        }
     }
 }

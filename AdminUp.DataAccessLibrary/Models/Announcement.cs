@@ -11,6 +11,7 @@ namespace AdminUp.DataAccessLibrary.Models
         public int BuilidingId { get; set; }
         [MaxLength(500)]
         public string Message { get; set; }
-        public DateTime DateAdded { get; set; }
+
+        public DateTime DateAdded { get; set; } = DateTime.Now;
     }
 }
