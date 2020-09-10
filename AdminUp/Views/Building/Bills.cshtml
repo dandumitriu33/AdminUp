@@ -15,7 +15,8 @@
                 <th scope="col">Issuer Name</th>
                 <th scope="col">Month</th>
                 <th scope="col">Total</th>
-                <th scope="col">Actions</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -30,7 +31,9 @@
                             <input type="hidden" name="buildingId" value="@buildingId">
                             <input type="hidden" name="billId" value="@bill.Id.ToString()">
                             <button class="btn btn-warning">Edit</button>
-                        </form>
+                        </form> 
+                    </td>       
+                    <td>
                         <form method="post" asp-action="DeleteBill" asp-controller="Building">
                             <input type="hidden" name="billId" value="@bill.Id">
                             <button class="btn btn-danger">Delete</button>
