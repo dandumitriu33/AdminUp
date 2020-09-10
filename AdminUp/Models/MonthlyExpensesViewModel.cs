@@ -14,5 +14,6 @@ namespace AdminUp.Models
         public List<AppartmentViewModel> Appartments { get; set; }
         public List<Bill> Bills { get; set; }
         public int TotalInhabitants { get; set; }
+        public List<AnnouncementModel> Announcements { get; set; }
     }
 }

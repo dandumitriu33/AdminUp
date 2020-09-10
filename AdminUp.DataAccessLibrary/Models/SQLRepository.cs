@@ -104,7 +104,7 @@ namespace AdminUp.DataAccessLibrary.Models
             return owner.LastName;
         }
 
-        public IEnumerable<Announcement> GetAllAnnouncementsByBuildingId(int buildingId)
+        public List<Announcement> GetAllAnnouncementsByBuildingId(int buildingId)
         {
             return _context.Announcements.Where(a => a.BuilidingId == buildingId).OrderByDescending(a => a.DateAdded).ToList();
         }

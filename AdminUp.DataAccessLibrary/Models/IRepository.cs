@@ -16,7 +16,7 @@ namespace AdminUp.DataAccessLibrary.Models
         void AddAppartmentOwner(AppartmentOwner appartmentOwner);
         string GetAppartmentOwnerFirstNameById(string appartmentOwnerId);
         string GetAppartmentOwnerLastNameById(string appartmentOwnerId);
-        IEnumerable<Announcement> GetAllAnnouncementsByBuildingId(int buildingId);
+        List<Announcement> GetAllAnnouncementsByBuildingId(int buildingId);
         void AddAnnouncement(int buildingId, string announcementMessage);
     }
 }

@@ -28,10 +28,10 @@
                                 SuperAdmin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Administration" asp-action="ListRoles">List Roles</a>
-                                <a class="dropdown-item" asp-controller="Administration" asp-action="CreateRole">Create Role</a>
-                                <a class="dropdown-item" asp-controller="Administration" asp-action="ManageUserRoles">Manage User Roles</a>
-                                <a class="dropdown-item" asp-controller="Building" asp-action="Index">All buildings</a>
+                                <a class="dropdown-item" asp-controller="administration" asp-action="listroles">List Roles</a>
+                                <a class="dropdown-item" asp-controller="administration" asp-action="createrole">Create Role</a>
+                                <a class="dropdown-item" asp-controller="administration" asp-action="manageuserroles">Manage User Roles</a>
+                                <a class="dropdown-item" asp-controller="building" asp-action="index">All buildings</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -39,11 +39,11 @@
                                 BuildingAdmin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Building" asp-action="Index">My Buildings</a>
+                                <a class="dropdown-item" asp-controller="building" asp-action="index">My Buildings</a>
                                 @*<p>HARDCODED VALUE @ FOR NOW</p>*@
-                                <a class="dropdown-item" asp-controller="Building" asp-action="Announcements" asp-route-buildingId="@buildingId" >Announcements</a>
-                                <a class="dropdown-item" asp-controller="Building" asp-action="Bills" asp-route-buildingId="@buildingId" >Bills</a>
-                                <a class="dropdown-item" asp-controller="Building" asp-action="Appartments" asp-route-buildingId="@buildingId">Appartments</a>
+                                <a class="dropdown-item" asp-controller="building" asp-action="announcements" asp-route-buildingId="@buildingId" >Announcements</a>
+                                <a class="dropdown-item" asp-controller="building" asp-action="bills" asp-route-buildingId="@buildingId" >Bills</a>
+                                <a class="dropdown-item" asp-controller="building" asp-action="appartments" asp-route-buildingId="@buildingId">Appartments</a>
                             </div>
                         </li>
                     </ul>

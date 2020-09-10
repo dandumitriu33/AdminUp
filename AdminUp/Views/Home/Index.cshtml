@@ -2,13 +2,18 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    string buildingId = "2";
 }
 
 <div class="text-center">
     <h2>@Model.Building.Name</h2>
     <p>@Model.Building.Address</p>
     <h1>@Model.Month @Model.Year</h1>
-    <hr/>
+    <hr />
+    <h3>Latest Announcement (<a asp-controller="building" asp-action="announcements" asp-route-buildingId="@buildingId">all</a>): 
+    @Model.Announcements[0].DateAdded - @Model.Announcements[0].Message 
+        </h3>
+    <hr />
 
     <table class="table table-striped">
         <thead>

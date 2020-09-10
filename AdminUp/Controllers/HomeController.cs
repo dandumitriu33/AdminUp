@@ -34,6 +34,21 @@ namespace AdminUp.Controllers
             output.Month = "AUGUST";
             output.Year = 2020;
             output.Building = _repository.GetBuildingById(2);
+
+            List<Announcement> allAnnouncements = _repository.GetAllAnnouncementsByBuildingId(2);
+            List<AnnouncementModel> allAnnouncementsForView = new List<AnnouncementModel>();
+            foreach (var announcement in allAnnouncements)
+            {
+                allAnnouncementsForView.Add(new AnnouncementModel
+                {
+                    Id = announcement.Id,
+                    Message = announcement.Message,
+                    BuilidingId = announcement.BuilidingId,
+                    DateAdded = announcement.DateAdded
+                });
+            }
+            output.Announcements = allAnnouncementsForView;
+
             List<Appartment> allAppartments = _repository.GetAllAppartments().ToList();
             List<AppartmentViewModel> allAppartmentsIncludingOwnerNames = new List<AppartmentViewModel>();
             foreach (var appt in allAppartments)
@@ -53,6 +68,7 @@ namespace AdminUp.Controllers
                 allAppartmentsIncludingOwnerNames.Add(tempAppt);
             }
             output.Appartments = allAppartmentsIncludingOwnerNames;
+
             List<Bill> allBills = _repository.GetAllBillsByBuildingId(2);
             output.Bills = allBills;
             foreach (var appt in allAppartments)
